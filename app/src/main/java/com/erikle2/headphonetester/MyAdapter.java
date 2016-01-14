@@ -21,6 +21,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private int profile;          //String Resource for header view email
 
+    private ITalkToMain iTalkToMain;
 
     // Creating a ViewHolder which extends the RecyclerView View Holder
     // ViewHolder are used to to store the inflated views in order to recycle them
@@ -33,10 +34,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         TextView Name;
         TextView email;
 
-
         public ViewHolder(View itemView,int ViewType) {                 // Creating ViewHolder Constructor with View and viewType As a parameter
             super(itemView);
-
 
             // Here we set the appropriate view in accordance with the the view type as passed when the holder object is created
 
@@ -55,14 +54,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
         }
     }
-
-    MyAdapter(String Titles[],int Icons[], int Profile){ // MyAdapter Constructor with titles and icons parameter
+    MyAdapter(ITalkToMain iTalkToMain,String Titles[],int Icons[], int Profile){ // MyAdapter Constructor with titles and icons parameter
         // titles, icons, name, email, profile pic are passed from the main activity as we
+        this.iTalkToMain = iTalkToMain;
         mNavTitles = Titles;                //have seen earlier
         mIcons = Icons;
         profile = Profile;                     //here we assign those passed values to the values we declared here
         //in adapter
-
 
 
     }
@@ -119,7 +117,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mNavTitles.length+1; // the number of items in the list will be +1 the titles including the header view.
     }
 
-
     // Witht the following method we check what type of view is being passed
     @Override
     public int getItemViewType(int position) {
@@ -132,5 +129,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private boolean isPositionHeader(int position) {
         return position == 0;
     }
-
 }

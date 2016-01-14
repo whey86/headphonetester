@@ -7,14 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
     String TITLES[] = {"Home","Events","Mail","Shop","Travel"};
     int ICONS[] = {android.R.drawable.ic_lock_lock,android.R.drawable.ic_delete,android.R.drawable.ic_dialog_email,android.R.drawable.ic_lock_lock,android.R.drawable.ic_lock_lock};
@@ -42,10 +45,40 @@ public class MainActivity extends AppCompatActivity {
         //Tillåter ej recyclerview att ändra storlek själv
         mRecyclerview.setHasFixedSize(true);
 
-        mRecyclerAdapter = new MyAdapter(TITLES, ICONS, PROFILE);
+        mRecyclerAdapter = new MyAdapter(this,TITLES, ICONS, PROFILE);
 
         mRecyclerview.setAdapter(mRecyclerAdapter);
+        final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener(){
 
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                return true;
+            }
+        });
+        mRecyclerview.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                View child = mRecyclerview.findChildViewUnder(e.getX(), e.getY());
+                if (child != null && mGestureDetector.onTouchEvent(e)) {
+                    mDrawerlayout.closeDrawers();
+                    Toast.makeText(MainActivity.this, "Item clicked " + mRecyclerview.getChildAdapterPosition(child), Toast.LENGTH_LONG);
+                    return true;
+
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         mLayoutManager = new LinearLayoutManager(this);
 
         mRecyclerview.setLayoutManager(mLayoutManager);
@@ -63,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         };
         mDrawerlayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,5 +119,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onNavigationSelected(int position) {
+
     }
 }
