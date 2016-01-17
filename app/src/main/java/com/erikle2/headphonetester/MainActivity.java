@@ -19,36 +19,38 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
-    String TITLES[] = {"Home","Events","Mail","Shop","Travel"};
-    int ICONS[] = {android.R.drawable.ic_lock_lock,android.R.drawable.ic_delete,android.R.drawable.ic_dialog_email,android.R.drawable.ic_lock_lock,android.R.drawable.ic_lock_lock};
+    String TITLES[] = {"Home", "Events", "Mail", "Shop", "Travel"};
+    int ICONS[] = {android.R.drawable.ic_lock_lock, android.R.drawable.ic_delete, android.R.drawable.ic_dialog_email, android.R.drawable.ic_lock_lock, android.R.drawable.ic_lock_lock};
     int PROFILE = R.drawable.head;
-    @Bind(R.id.toolbar)  Toolbar toolbar;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
-    @Bind(R.id.recycler_view) RecyclerView mRecyclerview;
+    @Bind(R.id.recycler_view)
+    RecyclerView mRecyclerview;
     private RecyclerView.Adapter mRecyclerAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    @Bind(R.id.drawer_layout) DrawerLayout mDrawerlayout;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout mDrawerlayout;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
+    private FragmentHandler mFragmentHandler;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
+        mFragmentHandler = new FragmentHandler(this);
         //Tillåter ej recyclerview att ändra storlek själv
         mRecyclerview.setHasFixedSize(true);
 
-        mRecyclerAdapter = new MyAdapter(this,TITLES, ICONS, PROFILE);
-
+        mRecyclerAdapter = new MyAdapter(this, TITLES, ICONS, PROFILE);
         mRecyclerview.setAdapter(mRecyclerAdapter);
-        final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener(){
+        final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
@@ -61,8 +63,12 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
                 View child = mRecyclerview.findChildViewUnder(e.getX(), e.getY());
                 if (child != null && mGestureDetector.onTouchEvent(e)) {
+                    int pos = mRecyclerview.getChildAdapterPosition(child);
                     mDrawerlayout.closeDrawers();
-                    Toast.makeText(MainActivity.this, "Item clicked " + mRecyclerview.getChildAdapterPosition(child), Toast.LENGTH_LONG);
+                    Toast.makeText(MainActivity.this, "Item clicked " + pos, Toast.LENGTH_LONG);
+                    if (pos == 1) {
+                        mFragmentHandler.setFragment(pos);
+                    }
                     return true;
 
                 }
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
