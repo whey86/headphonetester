@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import butterknife.Bind;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
     int PROFILE = R.drawable.head;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+
 
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerview;
@@ -66,9 +68,9 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
                     int pos = mRecyclerview.getChildAdapterPosition(child);
                     mDrawerlayout.closeDrawers();
                     Toast.makeText(MainActivity.this, "Item clicked " + pos, Toast.LENGTH_LONG);
-                    if (pos == 1) {
-                        mFragmentHandler.setFragment(pos);
-                    }
+
+                    mFragmentHandler.setFragment(pos);
+
                     return true;
 
                 }
