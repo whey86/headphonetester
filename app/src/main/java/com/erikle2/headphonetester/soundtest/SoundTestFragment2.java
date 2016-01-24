@@ -45,6 +45,11 @@ public class SoundTestFragment2 extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     public static SoundTestFragment newInstance() {
 
         Bundle args = new Bundle();

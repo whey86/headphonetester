@@ -31,6 +31,7 @@ public class SoundTestFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.soundtest_layout, container, false);
         ButterKnife.bind(this, view);
         button.setText("SIDA 1");
@@ -53,6 +54,10 @@ public class SoundTestFragment extends Fragment {
         ft.commit();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     public static SoundTestFragment newInstance() {
         

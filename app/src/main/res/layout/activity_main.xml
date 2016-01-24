@@ -3,21 +3,24 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar">
     </include>
 
-    <LinearLayout
+    <FrameLayout
         android:orientation="vertical"
         android:layout_below="@+id/toolbar"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
    >
-    </LinearLayout>
-
+    </FrameLayout>
+</LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="320dp"

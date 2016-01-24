@@ -26,13 +26,21 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
-
+    /**
+     * Navigation drawer list menu
+     */
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerview;
-    private RecyclerView.Adapter mRecyclerAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+
+    /**
+     * Layout holding the navigation view
+     */
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerlayout;
+
+    private RecyclerView.Adapter mRecyclerAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
 
     private ActionBarDrawerToggle mDrawerToggle;
 
