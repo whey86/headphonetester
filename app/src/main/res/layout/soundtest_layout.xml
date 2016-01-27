@@ -1,15 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_below="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF00FF">
+    android:background="@color/colorPrimary">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Testbutton"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Title"
+        android:id="@+id/tvTestTitle"
+        android:layout_gravity="center_horizontal|top" />
+    <TextView
+        android:layout_below="@+id/tvTestTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By following these 5 steps this app will help you evaluate your earphones."
+        android:id="@+id/tvTestInfo"
+        android:layout_gravity="center_horizontal|top" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/line_horizontal"
+            android:gravity="center">
+            <Button
+            android:layout_below="@+id/tvTestInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBack"
+            android:background="@drawable/btn1_01"
+            android:layout_gravity="center" />
+            <Button
+                android:layout_below="@+id/tvTestInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStartStop"
+                android:background="@drawable/btn1_02"
+                android:layout_gravity="center" />
+            <Button
+                android:layout_below="@+id/tvTestInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnNext"
+                android:background="@drawable/btn1_03"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+</RelativeLayout>

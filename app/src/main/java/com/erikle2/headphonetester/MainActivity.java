@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
                     mDrawerlayout.closeDrawers();
                     Toast.makeText(MainActivity.this, "Item clicked " + pos, Toast.LENGTH_LONG);
 
-                    mFragmentHandler.setFragment(pos);
+                    mFragmentHandler.setNaviFragment(pos);
 
                     return true;
 

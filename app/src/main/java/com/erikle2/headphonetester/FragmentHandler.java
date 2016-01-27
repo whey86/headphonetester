@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.widget.Toast;
 
+import com.erikle2.headphonetester.soundtest.ITalkToFragmentControl;
 import com.erikle2.headphonetester.soundtest.SoundTestFragment;
 import com.erikle2.headphonetester.soundtest.SoundfragmentHandler;
 
@@ -18,36 +19,51 @@ public class FragmentHandler {
     private final int FRAGMENT_MAIN = R.id.fragment_container;
 
     private String FRAGMENT_TEST = "soundtest";
-    private String FRAGMENT_COMPARE ="compare";
+    private String FRAGMENT_COMPARE = "compare";
     private String FRAGMENT_PROFILE = "profile";
 
-    private Fragment [] fragmentHolder = new Fragment[3];
+    private String[] TAGS = {FRAGMENT_TEST, FRAGMENT_COMPARE, FRAGMENT_PROFILE};
 
-    private SoundfragmentHandler mSoundTestFragmentsControl;
-    public FragmentHandler(MainActivity activity){
+    private ITalkToFragmentControl mSoundTestFragmentsControl;
+
+    public FragmentHandler(MainActivity activity) {
         mActivity = activity;
         mSoundTestFragmentsControl = new SoundfragmentHandler(activity);
     }
-    
-    void setFragment(int index){
-        FragmentManager fm  = mActivity.getFragmentManager();
+
+    /**
+     *  Method sets fragment for the view container by the index of the
+     *  navigationdrawer
+     *  * @param index
+     */
+    public void setNaviFragment(int index) {
+        FragmentManager fm = mActivity.getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Toast.makeText(mActivity,"Fragment " + index, Toast.LENGTH_SHORT ).show();
+        Toast.makeText(mActivity, "Fragment " + index, Toast.LENGTH_SHORT).show();
 
-        Fragment f = null;
-        if(fragmentHolder[index-1] == null && index ==1){
-            f = createFragment(index);
+        //Icon in navigation(recyclerview) was clicked
+        if (index < 1) {
+            return;
         }
 
-        if(f != null){
-            ft.replace(FRAGMENT_MAIN,f);
-            ft.commit();
-        }
+        ft.replace(FRAGMENT_MAIN, createFragment(index), TAGS[index - 1]);
+        ft.addToBackStack(null);
+        ft.setTransition(ft.TRANSIT_FRAGMENT_OPEN);
+        ft.commit();
+
+
     }
 
-    private Fragment createFragment(int position){
-        if(position == 1){
-            return SoundTestFragment.newInstance();
+    /**
+     * Get starting fragment for the navigation
+     *
+     * @param position
+     * @return
+     */
+    private Fragment createFragment(int position) {
+        switch (position) {
+            case 1:
+                return SoundTestFragment.newInstance("Test 1", "This is a testtext");
         }
         return null;
     }
