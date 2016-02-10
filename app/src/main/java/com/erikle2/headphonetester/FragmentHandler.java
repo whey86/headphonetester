@@ -63,7 +63,7 @@ public class FragmentHandler {
     private Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return SoundTestFragment.newInstance("Test 1", "This is a testtext");
+                return SoundTestFragment.newInstance( 0);
         }
         return null;
     }

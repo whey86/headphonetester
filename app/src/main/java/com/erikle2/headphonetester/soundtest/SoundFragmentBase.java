@@ -3,6 +3,9 @@ package com.erikle2.headphonetester.soundtest;
 import android.app.Fragment;
 import android.widget.Button;
 
+import com.erikle2.headphonetester.R;
+import com.erikle2.headphonetester.mediaplayer.SoundPlayer;
+
 /**
  * Created by Erik on 26/01/2016.
  */
@@ -23,10 +26,8 @@ public abstract class SoundFragmentBase extends Fragment {
      */
     String info;
 
-    void play() {
-
-    }
-    void stop(){
-
-    }
+    /**
+     * Index of current test, from 0 to n.
+     */
+    int index;
 }

@@ -20,8 +20,8 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
-    String TITLES[] = {"Home", "Events", "Mail", "Shop", "Travel"};
-    int ICONS[] = {android.R.drawable.ic_lock_lock, android.R.drawable.ic_delete, android.R.drawable.ic_dialog_email, android.R.drawable.ic_lock_lock, android.R.drawable.ic_lock_lock};
+    String TITLES[] = {"Earphonetest", "Compare", "About"};
+    int ICONS[] = {android.R.drawable.ic_btn_speak_now, android.R.drawable.ic_dialog_map, android.R.drawable.ic_menu_agenda};
     int PROFILE = R.drawable.head;
     @Bind(R.id.toolbar)
     Toolbar toolbar;

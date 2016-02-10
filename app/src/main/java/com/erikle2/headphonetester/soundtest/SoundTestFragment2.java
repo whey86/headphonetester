@@ -18,7 +18,7 @@ import butterknife.OnClick;
  * Created by Erik on 19/01/2016.
  */
 public class SoundTestFragment2 extends Fragment {
-    @Bind(R.id.button)
+    @Bind(R.id.btnNext)
     Button button;
 
 
@@ -39,7 +39,7 @@ public class SoundTestFragment2 extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-    @OnClick(R.id.button)
+    @OnClick(R.id.btnNext)
     void onNext(){
         Toast.makeText(getActivity(), "CLICKING TEST", Toast.LENGTH_SHORT).show();
     }

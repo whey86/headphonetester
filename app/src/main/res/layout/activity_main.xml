@@ -26,6 +26,7 @@
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
+        android:theme="@style/Theme.AppCompat.Light"
         android:scrollbars="vertical"
         android:background="#FFFFFF">
 

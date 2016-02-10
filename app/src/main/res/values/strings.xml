@@ -3,4 +3,17 @@
     <string name="action_settings">Settings</string>
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
+
+
+    <array name="test_titles">
+        <item>How it works</item>
+        <item>Frequency response 1/2</item>
+        <item>Frequency response 2/2</item>
+    </array>
+
+    <array name="test_info">
+        <item>Follow these simple steps buy listening to different sounds and evaluating them</item>
+        <item>When you press play it will play a sound from a low frequency and go higher. When you hear it press stop. This shows how low frequencies your earphones can play or how low you can hear.</item>
+        <item>Same as previous but on the high end</item>
+    </array>
 </resources>
