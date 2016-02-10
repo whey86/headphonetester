@@ -14,12 +14,25 @@ public class SoundPlayer {
     private static SoundPlayer soundPlayer = null;
     private MediaPlayer mediaPlayer;
 
+    private int [] AUDIOFILES = {   R.raw.frequencycheckhigh_44100,
+                                    R.raw.frequencychecklow,
+                                    R.raw.sweep20_20klog_perceptual,
+                                    R.raw.dynamiccheck,
+                                    R.raw.headphoneshaker,
+                                    R.raw.headphonesweep20Hz_10kHz,
+                                    R.raw.L,
+                                    R.raw.R,
+                                    R.raw.polarity_lowrumbleOK,
+                                    R.raw.polarity_lowrumbleKO,
+                                    R.raw.binaural_knocking,
+                                    };
+
     public SoundPlayer() {
     }
 
     public void playMP3(Context context,int id){
         Toast.makeText(context,"Playing MP3",Toast.LENGTH_SHORT).show();
-        mediaPlayer = MediaPlayer.create(context, id);
+        mediaPlayer = MediaPlayer.create(context, AUDIOFILES[id]);
         mediaPlayer.start(); // no need to call prepare(); create() does that for you
     }
 
