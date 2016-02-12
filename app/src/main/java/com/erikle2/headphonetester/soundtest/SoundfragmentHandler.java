@@ -57,7 +57,6 @@ public class SoundfragmentHandler implements ITalkToFragmentControl {
     {
         switch (index){
             case 0 : return new SoundTestFragment();
-            case 1 : return new SoundTestFragment2();
         }
         return null;
     }

@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
+    <string name="btnTestStart">Start</string>
 
 
     <array name="test_titles">

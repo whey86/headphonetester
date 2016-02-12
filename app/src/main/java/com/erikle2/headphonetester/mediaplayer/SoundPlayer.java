@@ -19,11 +19,11 @@ public class SoundPlayer {
                                     R.raw.sweep20_20klog_perceptual,
                                     R.raw.dynamiccheck,
                                     R.raw.headphoneshaker,
-                                    R.raw.headphonesweep20Hz_10kHz,
-                                    R.raw.L,
-                                    R.raw.R,
-                                    R.raw.polarity_lowrumbleOK,
-                                    R.raw.polarity_lowrumbleKO,
+                                    R.raw.headphonesweep20hz_10khz,
+                                    R.raw.left,
+                                    R.raw.right,
+                                    R.raw.polarity_lowrumbleok,
+                                    R.raw.polarity_lowrumbleko,
                                     R.raw.binaural_knocking,
                                     };
 
