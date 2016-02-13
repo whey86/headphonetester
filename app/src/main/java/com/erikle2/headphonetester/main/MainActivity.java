@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester;
+package com.erikle2.headphonetester.main;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -12,14 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
+
+import com.erikle2.headphonetester.R;
+import com.erikle2.headphonetester.model.HeadPhoneTest;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
+    HeadPhoneTest mTest;
     String TITLES[] = {"Earphonetest", "Compare", "About"};
     int ICONS[] = {android.R.drawable.ic_btn_speak_now, android.R.drawable.ic_dialog_map, android.R.drawable.ic_menu_agenda};
     int PROFILE = R.drawable.head;
@@ -141,5 +144,15 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
     @Override
     public void onNavigationSelected(int position) {
 
+    }
+
+    @Override
+    public HeadPhoneTest startNewTest(String name) {
+        return mTest = new HeadPhoneTest(name);
+    }
+
+    @Override
+    public HeadPhoneTest getTest() {
+        return mTest;
     }
 }

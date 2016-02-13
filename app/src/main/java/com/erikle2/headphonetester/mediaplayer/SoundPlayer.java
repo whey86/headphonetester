@@ -1,10 +1,13 @@
 package com.erikle2.headphonetester.mediaplayer;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.widget.Toast;
 
 import com.erikle2.headphonetester.R;
+
+import java.io.IOException;
 
 /**
  * Created by Erik on 28/01/2016.
@@ -31,9 +34,14 @@ public class SoundPlayer {
     }
 
     public void playMP3(Context context,int id){
-        Toast.makeText(context,"Playing MP3",Toast.LENGTH_SHORT).show();
-        mediaPlayer = MediaPlayer.create(context, AUDIOFILES[id]);
-        mediaPlayer.start(); // no need to call prepare(); create() does that for you
+//        Toast.makeText(context,"Playing MP3",Toast.LENGTH_SHORT).show();
+//        mediaPlayer = MediaPlayer.create(context, AUDIOFILES[id]);
+//        mediaPlayer.start(); // no need to call prepare(); create() does that for you
+
+
+            mediaPlayer = MediaPlayer.create(context, AUDIOFILES[id]);
+            mediaPlayer.start();
+
     }
 
     public MediaPlayer getMediaPlayer(){

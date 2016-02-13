@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester;
+package com.erikle2.headphonetester.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.erikle2.headphonetester.R;
 
 /**
  * Created by Erik on 12/01/2016.

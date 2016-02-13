@@ -6,7 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.util.Log;
 
-import com.erikle2.headphonetester.MainActivity;
+import com.erikle2.headphonetester.main.MainActivity;
 import com.erikle2.headphonetester.R;
 
 /**

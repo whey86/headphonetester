@@ -6,4 +6,5 @@ package com.erikle2.headphonetester.soundtest;
 public interface SoundTestFragmentPresenter {
     void validateTest();
     void playOrPauseAudio();
+    void setValue(int value);
 }

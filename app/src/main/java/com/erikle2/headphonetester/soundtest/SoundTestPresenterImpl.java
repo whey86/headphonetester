@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.erikle2.headphonetester.main.ITalkToMain;
 import com.erikle2.headphonetester.mediaplayer.SoundPlayer;
 
 /**
@@ -15,31 +16,44 @@ public class SoundTestPresenterImpl implements SoundTestFragmentPresenter {
     private Activity mActivity;
     private SoundPlayer soundPlayer;
     private int index;
+    private ITalkToMain activityCallback;
+    private Context context;
 
-    public SoundTestPresenterImpl(SoundTestFragmentView mView, Activity activity, int index) {
+
+    public SoundTestPresenterImpl(SoundTestFragmentView mView, Context context, Activity activity, ITalkToMain activityCallback, int index) {
         this.view = mView;
         this.soundPlayer = SoundPlayer.getInstance();
         this.mActivity = activity;
         this.index = index;
+        this.activityCallback = activityCallback;
+        this.context = context;
     }
 
     @Override
     public void validateTest() {
-        //TODO check if test is done by requesting value
+        if (activityCallback.getTest().hasValue(index)) {
+            view.nextView();
+        }
     }
 
     @Override
     public void playOrPauseAudio() {
-        if (soundPlayer.isNull()){
+        if (soundPlayer.isNull()) {
             soundPlayer.playMP3(mActivity, index);
             return;
         }
-        if(soundPlayer.isPlaying()){
+        if (soundPlayer.isPlaying()) {
             Toast.makeText(mActivity, "Duration : " + soundPlayer.getMediaPlayer().getCurrentPosition(), Toast.LENGTH_LONG).show();
+            activityCallback.getTest().addResult(soundPlayer.getMediaPlayer().getCurrentPosition(), index);
             soundPlayer.stop();
-        }else{
+        } else {
             soundPlayer.playMP3(mActivity, index);
         }
 
+    }
+
+    @Override
+    public void setValue(int value) {
+        activityCallback.getTest().addResult(value,index);
     }
 }

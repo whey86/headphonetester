@@ -1,10 +1,11 @@
-package com.erikle2.headphonetester;
+package com.erikle2.headphonetester.main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.widget.Toast;
 
+import com.erikle2.headphonetester.R;
 import com.erikle2.headphonetester.soundtest.ITalkToFragmentControl;
 import com.erikle2.headphonetester.soundtest.SoundTestFragment;
 import com.erikle2.headphonetester.soundtest.SoundfragmentHandler;
