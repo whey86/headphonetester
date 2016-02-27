@@ -33,7 +33,6 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     private int index;
 
     public SoundTestFragment() {
-        mPresenter = new SoundTestPresenterImpl(this, this.getActivity(), getActivity(), mActivityCallback, index);
 
     }
 
@@ -41,12 +40,6 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     public void onAttach(Context context) {
         super.onAttach(context);
 
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         try {
             mActivityCallback = (ITalkToMain) getActivity();
         } catch (ClassCastException e) {
@@ -56,9 +49,17 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         index = getArguments().getInt("index");
+        mPresenter = new SoundTestPresenterImpl(this, getActivity(), mActivityCallback, index);
+
     }
 
     @Override

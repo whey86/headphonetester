@@ -29,6 +29,7 @@ public class FragmentHandler {
 
     public FragmentHandler(MainActivity activity) {
         mActivity = activity;
+
         mSoundTestFragmentsControl = new SoundfragmentHandler(activity);
     }
 
@@ -64,7 +65,7 @@ public class FragmentHandler {
     private Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return SoundTestFragment.newInstance( 0);
+                return SoundTestFragment.newInstance(0);
         }
         return null;
     }

@@ -12,7 +12,7 @@ public class HeadPhoneTest {
     /**
      * Number of tests
      */
-    protected int SIZE = 2;
+    protected int SIZE = 3;
     /**
      * Array storing testresult
      */
