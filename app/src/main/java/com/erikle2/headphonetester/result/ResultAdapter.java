@@ -14,20 +14,17 @@ import org.w3c.dom.Text;
  * Created by Erik on 24/02/2016.
  */
 public class ResultAdapter extends RecyclerView.Adapter {
-
-    public String[] data;
+    public int[] data;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView textView;
+        View view;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView)itemView;
+            view = itemView;
         }
     }
-
-    public ResultAdapter(String[] data) {
+    public ResultAdapter(int[] data) {
         this.data = data;
     }
 
@@ -44,11 +41,8 @@ public class ResultAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TextView itemName = (TextView)holder.itemView.findViewById(R.id.tvResultItem);
-        itemName.setText(data[position]);
+        itemName.setText("" + data[position]);
     }
-
-
-
     @Override
     public int getItemCount() {
         return data.length;

@@ -8,13 +8,23 @@
 
     <array name="test_titles">
         <item>How it works</item>
-        <item>Frequency response 1/2</item>
-        <item>Frequency response 2/2</item>
+        <item>Frequency response low end</item>
+        <item>Frequency response high end</item>
+        <item>Spectral Flatness</item>
+        <item>Dynamic Range</item>
+        <item>Quality</item>
+
     </array>
 
     <array name="test_info">
         <item>Follow these simple steps buy listening to different sounds and evaluating them</item>
-        <item>When you press play it will play a sound from a low frequency and go higher. When you hear it press stop. This shows how low frequencies your earphones can play or how low you can hear.</item>
+        <item>When you press play it will play a sound from a low frequency and go higher. When you
+            hear it press stop. This shows how low frequencies your earphones can play or how low
+            you can hear.
+        </item>
+        <item>Same as previous but on the high end</item>
+        <item>Same as previous but on the high end</item>
+        <item>Same as previous but on the high end</item>
         <item>Same as previous but on the high end</item>
     </array>
 </resources>

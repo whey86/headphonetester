@@ -17,7 +17,8 @@ public class SoundPlayer {
     private static SoundPlayer soundPlayer = null;
     private MediaPlayer mediaPlayer;
 
-    private int [] AUDIOFILES = {   R.raw.frequencycheckhigh_44100,
+    private int [] AUDIOFILES = {   1111,
+                                    R.raw.frequencycheckhigh_44100,
                                     R.raw.frequencychecklow,
                                     R.raw.sweep20_20klog_perceptual,
                                     R.raw.dynamiccheck,

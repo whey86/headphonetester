@@ -139,12 +139,10 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         FragmentManager fm = getActivity().getFragmentManager();
         fm.popBackStack();
     }
-
-
     @OnClick(R.id.btnStartStop)
     void onPlayStop() {
         if (soundPlayer.isNull()) {
-            soundPlayer.playMP3(getActivity(), index);
+            soundPlayer.playMP3(getActivity(),index);
             return;
         }
         if (soundPlayer.isPlaying()) {
@@ -155,7 +153,6 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
             soundPlayer.playMP3(getActivity(), index);
         }
     }
-
     @Override
     public void onResume() {
         super.onResume();
