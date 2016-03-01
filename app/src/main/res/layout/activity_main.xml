@@ -28,7 +28,7 @@
         android:layout_gravity="left"
         android:theme="@style/Theme.AppCompat.Light"
         android:scrollbars="vertical"
-        android:background="#FFFFFF">
+        android:background="@color/colorPrimary">
 
     </android.support.v7.widget.RecyclerView>
 </android.support.v4.widget.DrawerLayout>
