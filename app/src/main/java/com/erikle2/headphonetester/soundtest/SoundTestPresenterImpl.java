@@ -38,8 +38,10 @@ public class SoundTestPresenterImpl implements SoundTestFragmentPresenter {
 
     @Override
     public void validateTest() {
+        // Testfragement done and not last testfragment
         if (activityCallback.getTest().hasValue(index) && index < MAX) {
             view.nextView();
+        //if this is the last test, show resultfragment
         }else if(index == MAX){
             FragmentManager fm = mActivity.getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -53,16 +55,23 @@ public class SoundTestPresenterImpl implements SoundTestFragmentPresenter {
     }
     @Override
     public void playOrPauseAudio() {
+
+        //Soundfile has never been played
         if (soundPlayer.isNull()) {
             soundPlayer.playMP3(mActivity, index);
+            view.tooglePlaybutton();
             return;
         }
+        //Ongoing play
         if (soundPlayer.isPlaying()) {
             Toast.makeText(mActivity, "Duration : " + soundPlayer.getMediaPlayer().getCurrentPosition(), Toast.LENGTH_LONG).show();
             activityCallback.getTest().addResult(soundPlayer.getMediaPlayer().getCurrentPosition(), index);
             soundPlayer.stop();
+            view.tooglePlaybutton();
+            //play again
         } else {
             soundPlayer.playMP3(mActivity, index);
+            view.tooglePlaybutton();
         }
 
     }

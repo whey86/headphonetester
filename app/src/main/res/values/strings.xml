@@ -27,4 +27,13 @@
         <item>Same as previous but on the high end</item>
         <item>Same as previous but on the high end</item>
     </array>
+
+    <array name="test_type">
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+    </array>
 </resources>

@@ -4,10 +4,14 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +35,8 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     private SoundPlayer soundPlayer = SoundPlayer.getInstance();
 
     private int index;
+
+    Animation animationFlash;
 
     public SoundTestFragment() {
 
@@ -60,6 +66,11 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         index = getArguments().getInt("index");
         mPresenter = new SoundTestPresenterImpl(this, getActivity(), mActivityCallback, index);
 
+        animationFlash = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+        animationFlash.setDuration(500); // duration - half a second
+        animationFlash.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        animationFlash.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+        animationFlash.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
     }
 
     @Override
@@ -113,7 +124,9 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
 
     @Override
     public void flashNext() {
+        Button btnNext = (Button) getActivity().findViewById(R.id.btnNext);
 
+        btnNext.startAnimation(animationFlash);
     }
 
     @OnClick(R.id.btnNext)
@@ -139,18 +152,36 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         FragmentManager fm = getActivity().getFragmentManager();
         fm.popBackStack();
     }
+
+
+    @Override
+    public void tooglePlaybutton() {
+        Button btn = (Button) this.getActivity().findViewById(R.id.btnStartStop);
+        Resources r = getResources();
+        if(btn.getBackground().getConstantState().equals(r.getDrawable(R.drawable.btn_play).getConstantState())){
+            btn.setBackgroundResource(R.drawable.btn_stop);
+        }
+        else {
+            btn.setBackgroundResource(R.drawable.btn_play);
+        }
+    }
+
     @OnClick(R.id.btnStartStop)
     void onPlayStop() {
         if (soundPlayer.isNull()) {
             soundPlayer.playMP3(getActivity(),index);
+            this.tooglePlaybutton();
             return;
         }
         if (soundPlayer.isPlaying()) {
             Toast.makeText(getActivity(), "Duration : " + soundPlayer.getMediaPlayer().getCurrentPosition(), Toast.LENGTH_LONG).show();
             mPresenter.setValue(soundPlayer.getMediaPlayer().getCurrentPosition());
             soundPlayer.stop();
+            this.flashNext();
+            this.tooglePlaybutton();
         } else {
             soundPlayer.playMP3(getActivity(), index);
+            this.tooglePlaybutton();
         }
     }
     @Override

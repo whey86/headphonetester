@@ -25,6 +25,8 @@ public interface SoundTestFragmentView {
 
     void previousView();
 
+    void tooglePlaybutton();
+
 
 
 
