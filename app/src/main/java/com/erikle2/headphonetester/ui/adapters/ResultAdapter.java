@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.erikle2.headphonetester.R;
+import com.erikle2.headphonetester.model.entities.HeadPhoneTest;
 
 import org.w3c.dom.Text;
 
@@ -14,7 +15,7 @@ import org.w3c.dom.Text;
  * Created by Erik on 24/02/2016.
  */
 public class ResultAdapter extends RecyclerView.Adapter {
-    public int[] data;
+    public HeadPhoneTest data;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View view;
@@ -24,7 +25,7 @@ public class ResultAdapter extends RecyclerView.Adapter {
             view = itemView;
         }
     }
-    public ResultAdapter(int[] data) {
+    public ResultAdapter(HeadPhoneTest data) {
         this.data = data;
     }
 
@@ -40,11 +41,14 @@ public class ResultAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TextView itemName = (TextView)holder.itemView.findViewById(R.id.tvResultItem);
-        itemName.setText("" + data[position]);
+        TextView itemValue = (TextView)holder.itemView.findViewById(R.id.tvResultItemValue);
+        itemValue.setText("" + data.getResult()[position+1]);
+
+        TextView itemName = (TextView)holder.itemView.findViewById(R.id.tvResultItemName);
+        itemName.setText("" + data.getName()[position+1]);
     }
     @Override
     public int getItemCount() {
-        return data.length;
+        return data.getName().length -1;
     }
 }

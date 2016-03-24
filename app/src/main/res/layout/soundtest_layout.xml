@@ -3,8 +3,13 @@
     android:orientation="vertical"
     android:layout_below="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bcordsblur">
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/head2"
+        android:scaleType="centerCrop"/>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -14,7 +19,6 @@
         android:padding="20dp"
         android:gravity="center"
         android:id="@+id/tvTestTitle"
-        android:textColor="@color/colorAccent"
         android:layout_gravity="center_horizontal|top" />
     <TextView
         android:layout_below="@+id/tvTestTitle"
@@ -22,10 +26,22 @@
         android:layout_height="wrap_content"
         android:text="By following these 5 steps this app will help you evaluate your earphones."
         android:padding="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:id="@+id/tvTestInfo"
+        android:shadowColor="@color/colorPrimaryDark"
         android:layout_gravity="center_horizontal|top" />
-
+    <TextView
+        android:layout_below="@+id/tvTestInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:id="@+id/tvTestresult"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:layout_gravity="center_horizontal|top" />
 
         <LinearLayout
             android:orientation="horizontal"

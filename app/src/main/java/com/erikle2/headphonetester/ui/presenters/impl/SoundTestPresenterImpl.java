@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.Resources;
 import android.widget.Toast;
 
 import com.erikle2.headphonetester.R;
-import com.erikle2.headphonetester.main.ITalkToMain;
+import com.erikle2.headphonetester.ui.views.ITalkToMain;
 import com.erikle2.headphonetester.mediaplayer.SoundPlayer;
 import com.erikle2.headphonetester.ui.fragments.ResultFragment;
 import com.erikle2.headphonetester.ui.presenters.interfaces.SoundTestFragmentPresenter;
@@ -25,6 +26,7 @@ public class SoundTestPresenterImpl implements SoundTestFragmentPresenter {
     private ITalkToMain activityCallback;
     private Context context;
     private int MAX;
+    private int TESTTYPE;
 
 
     public SoundTestPresenterImpl(SoundTestFragmentView mView, Activity activity, ITalkToMain activityCallback, int index) {
@@ -35,7 +37,9 @@ public class SoundTestPresenterImpl implements SoundTestFragmentPresenter {
         this.activityCallback = activityCallback;
         this.context = activity;
 
-        MAX = mActivity.getResources().getStringArray(R.array.test_titles).length - 1;
+        Resources r = mActivity.getResources();
+        MAX = r.getStringArray(R.array.test_titles).length - 1;
+        TESTTYPE = r.getIntArray(R.array.test_type)[index];
     }
 
     @Override
@@ -58,28 +62,29 @@ public class SoundTestPresenterImpl implements SoundTestFragmentPresenter {
     @Override
     public void playOrPauseAudio() {
 
-        //Soundfile has never been played
-        if (soundPlayer.isNull()) {
-            soundPlayer.playMP3(mActivity, index);
-            view.tooglePlaybutton();
-            return;
-        }
-        //Ongoing play
-        if (soundPlayer.isPlaying()) {
-            Toast.makeText(mActivity, "Duration : " + soundPlayer.getMediaPlayer().getCurrentPosition(), Toast.LENGTH_LONG).show();
-            activityCallback.getTest().addResult(soundPlayer.getMediaPlayer().getCurrentPosition(), index);
-            soundPlayer.stop();
-            view.tooglePlaybutton();
-            //play again
-        } else {
-            soundPlayer.playMP3(mActivity, index);
-            view.tooglePlaybutton();
-        }
+//        //Soundfile has never been played
+//        if (soundPlayer.isNull()) {
+//            soundPlayer.playMP3(mActivity, index);
+//            view.tooglePlaybutton();
+//            return;
+//        }
+//        //Ongoing play
+//        if (soundPlayer.isPlaying()) {
+//            Toast.makeText(mActivity, "Duration : " + soundPlayer.getMediaPlayer().getCurrentPosition(), Toast.LENGTH_LONG).show();
+//            setValue(soundPlayer.getMediaPlayer().getCurrentPosition(), index);
+//            soundPlayer.stop();
+//            view.tooglePlaybutton();
+//            //play again
+//        } else {
+//            soundPlayer.playMP3(mActivity, index);
+//            view.tooglePlaybutton();
+//        }
 
     }
 
     @Override
     public void setValue(int value) {
+        view.setResult("Input " + value);
         activityCallback.getTest().addResult(value, index);
     }
 }

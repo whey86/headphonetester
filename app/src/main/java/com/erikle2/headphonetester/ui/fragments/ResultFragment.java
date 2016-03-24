@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.erikle2.headphonetester.R;
-import com.erikle2.headphonetester.main.ITalkToMain;
-import com.erikle2.headphonetester.result.ResultAdapter;
-import com.erikle2.headphonetester.result.ResultView;
+import com.erikle2.headphonetester.ui.views.ITalkToMain;
+import com.erikle2.headphonetester.ui.adapters.ResultAdapter;
+import com.erikle2.headphonetester.ui.views.ResultView;
 
 /**
  * Created by Erik on 23/02/2016.
@@ -24,9 +24,11 @@ public class ResultFragment extends Fragment implements ResultView {
     private RecyclerView.LayoutManager layoutManager;
     private ITalkToMain mActivityCallback;
 
-    public ResultFragment(){
-
-    }
+    /**
+     *
+     *          LIFECYCLE METHODS
+     *
+     */
 
     @Override
     public void onAttach(Context context) {
@@ -46,7 +48,7 @@ public class ResultFragment extends Fragment implements ResultView {
         mRecyclerview.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerview.setLayoutManager(layoutManager);
-        adapter = new ResultAdapter(mActivityCallback.getTest().getResult());
+        adapter = new ResultAdapter(mActivityCallback.getTest());
         mRecyclerview.setAdapter(adapter);
 
 
@@ -60,11 +62,21 @@ public class ResultFragment extends Fragment implements ResultView {
 
     }
 
+    /**
+     *
+     *          ONCLICK METHODS
+     *
+     */
     @Override
     public void close() {
         //TODO return to main screen
     }
 
+    /**
+     *Factory method
+     *
+     * @return
+     */
     public static ResultFragment newInstance(){
         return new ResultFragment();
     }

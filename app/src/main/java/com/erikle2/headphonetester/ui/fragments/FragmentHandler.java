@@ -6,9 +6,6 @@ import android.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.erikle2.headphonetester.R;
-import com.erikle2.headphonetester.soundtest.ITalkToFragmentControl;
-import com.erikle2.headphonetester.ui.fragments.SoundTestFragment;
-import com.erikle2.headphonetester.ui.fragments.SoundfragmentHandler;
 import com.erikle2.headphonetester.ui.activities.MainActivity;
 
 /**

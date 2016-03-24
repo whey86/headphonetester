@@ -12,20 +12,25 @@ import com.erikle2.headphonetester.mediaplayer.SoundPlayer;
 public interface SoundTestFragmentView {
 
     /**
-     * Update sound score on view
-     */
-    void updateResult();
-
-    /**
      * Make to next button flash, tells the user to go on to the next step
      */
     void flashNext();
+
+    void abortFlash();
 
     void nextView();
 
     void previousView();
 
     void tooglePlaybutton();
+
+    void setResult(String result);
+
+    void hideBackbutton();
+    void hideNextbutton();
+
+    void showNextbutton();
+    void showBackbutton();
 
 
 

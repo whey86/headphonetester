@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.erikle2.headphonetester.R;
-import com.erikle2.headphonetester.main.ITalkToMain;
+import com.erikle2.headphonetester.ui.views.ITalkToMain;
 
 /**
  * Created by Erik on 12/01/2016.
@@ -57,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
         }
     }
-    MyAdapter(ITalkToMain iTalkToMain,String Titles[],int Icons[], int Profile){ // MyAdapter Constructor with titles and icons parameter
+    public MyAdapter(ITalkToMain iTalkToMain, String Titles[], int Icons[], int Profile){ // MyAdapter Constructor with titles and icons parameter
         // titles, icons, name, email, profile pic are passed from the main activity as we
         this.iTalkToMain = iTalkToMain;
         mNavTitles = Titles;                //have seen earlier

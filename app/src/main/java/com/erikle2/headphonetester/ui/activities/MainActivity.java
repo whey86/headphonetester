@@ -15,10 +15,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.erikle2.headphonetester.R;
-import com.erikle2.headphonetester.main.FragmentHandler;
-import com.erikle2.headphonetester.main.ITalkToMain;
-import com.erikle2.headphonetester.main.MyAdapter;
-import com.erikle2.headphonetester.model.HeadPhoneTest;
+import com.erikle2.headphonetester.ui.fragments.FragmentHandler;
+import com.erikle2.headphonetester.ui.views.ITalkToMain;
+import com.erikle2.headphonetester.ui.adapters.MyAdapter;
+import com.erikle2.headphonetester.model.entities.HeadPhoneTest;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
     @Override
     public HeadPhoneTest startNewTest(String name) {
-        return mTest = new HeadPhoneTest(name);
+        return mTest = new HeadPhoneTest(name, getResources().getStringArray(R.array.test_titles));
     }
 
     @Override

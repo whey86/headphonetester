@@ -12,6 +12,10 @@ public class HeadPhoneTest {
      */
     protected String headphonesName;
     /**
+     * Name of test
+     */
+    private String [] testname;
+    /**
      * Number of tests
      */
     protected int SIZE = 6;
@@ -24,8 +28,10 @@ public class HeadPhoneTest {
      * Constructor
      * @param name
      */
-    public HeadPhoneTest(String name){
+    public HeadPhoneTest(String name, String [] testnames){
+
         headphonesName = name;
+        this.testname = testnames;
     }
 
     /**
@@ -49,4 +55,6 @@ public class HeadPhoneTest {
     public int [] getResult(){
         return result;
     }
+
+    public String [] getName(){ return testname;}
 }

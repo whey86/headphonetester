@@ -4,6 +4,7 @@
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
     <string name="btnTestStart">Start</string>
+    <string name="result_title">Test result</string>
 
 
     <array name="test_titles">

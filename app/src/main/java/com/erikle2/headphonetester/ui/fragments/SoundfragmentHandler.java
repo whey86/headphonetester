@@ -6,10 +6,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.util.Log;
 
-import com.erikle2.headphonetester.soundtest.ITalkToFragmentControl;
 import com.erikle2.headphonetester.ui.activities.MainActivity;
 import com.erikle2.headphonetester.R;
-import com.erikle2.headphonetester.ui.fragments.SoundTestFragment;
 
 /**
  * Created by Erik on 24/01/2016.

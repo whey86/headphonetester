@@ -17,12 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erikle2.headphonetester.R;
-import com.erikle2.headphonetester.main.ITalkToMain;
+import com.erikle2.headphonetester.ui.views.ITalkToMain;
 import com.erikle2.headphonetester.mediaplayer.SoundPlayer;
-import com.erikle2.headphonetester.soundtest.SoundTestFragmentPresenter;
-import com.erikle2.headphonetester.soundtest.SoundTestFragmentView;
-import com.erikle2.headphonetester.soundtest.SoundTestPresenterImpl;
+import com.erikle2.headphonetester.ui.presenters.interfaces.SoundTestFragmentPresenter;
+import com.erikle2.headphonetester.ui.views.SoundTestFragmentView;
+import com.erikle2.headphonetester.ui.presenters.impl.SoundTestPresenterImpl;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,19 +32,24 @@ import butterknife.OnClick;
  */
 public class SoundTestFragment extends Fragment implements SoundTestFragmentView {
 
-
     private SoundTestFragmentPresenter mPresenter;
     private ITalkToMain mActivityCallback;
     private String headphoneName;
     private SoundPlayer soundPlayer = SoundPlayer.getInstance();
 
+
+    @Bind(R.id.btnBack)
+    Button btnPrevious;
+    @Bind(R.id.btnNext)
+    Button btnNext;
+
     private int index;
 
     Animation animationFlash;
 
-    public SoundTestFragment() {
-
-    }
+    /**
+     * LIFECYCLE METHODS
+     */
 
     @Override
     public void onAttach(Context context) {
@@ -80,7 +86,7 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view;
-        // If informationview
+        // Determing to show intro or test
         if (index == 0) {
             view = inflater.inflate(R.layout.soundtest_layout_start, container, false);
             Button b = (Button) view.findViewById(R.id.btnStartTest);
@@ -104,6 +110,7 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         } else {
             view = inflater.inflate(R.layout.soundtest_layout, container, false);
             ButterKnife.bind(this, view);
+            hideNextbutton();
         }
 
 
@@ -120,21 +127,19 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void updateResult() {
-
-    }
+    /**
+     * IMPLEMENTED METHODS
+     */
 
     @Override
     public void flashNext() {
         Button btnNext = (Button) getActivity().findViewById(R.id.btnNext);
-
         btnNext.startAnimation(animationFlash);
     }
 
-    @OnClick(R.id.btnNext)
-    public void onNext() {
-        mPresenter.validateTest();
+    @Override
+    public void abortFlash() {
+        btnNext.clearAnimation();
     }
 
     @Override
@@ -149,31 +154,68 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         ft.commit();
     }
 
-    @OnClick(R.id.btnBack)
+
+    @Override
+    public void tooglePlaybutton() {
+        Button btn = (Button) this.getActivity().findViewById(R.id.btnStartStop);
+        Resources r = getResources();
+        if (btn.getBackground().getConstantState().equals(r.getDrawable(R.drawable.btn_play).getConstantState())) {
+            btn.setBackgroundResource(R.drawable.btn_stop);
+        } else {
+            btn.setBackgroundResource(R.drawable.btn_play);
+        }
+    }
+
+    @Override
+    public void setResult(String result) {
+        TextView tvResult = (TextView) getActivity().findViewById(R.id.tvTestresult);
+        tvResult.setText(result);
+    }
+
+    @Override
+    public void hideBackbutton() {
+        btnPrevious.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void hideNextbutton() {
+        btnNext.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showNextbutton() {
+        btnNext.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void showBackbutton() {
+        btnPrevious.setVisibility(View.VISIBLE);
+    }
+
+
     @Override
     public void previousView() {
         FragmentManager fm = getActivity().getFragmentManager();
         fm.popBackStack();
     }
 
+    /**
+     * ONCLICK METHODS
+     */
 
-    @Override
-    public void tooglePlaybutton() {
-        Button btn = (Button) this.getActivity().findViewById(R.id.btnStartStop);
-        Resources r = getResources();
-        if(btn.getBackground().getConstantState().equals(r.getDrawable(R.drawable.btn_play).getConstantState())){
-            btn.setBackgroundResource(R.drawable.btn_stop);
-        }
-        else {
-            btn.setBackgroundResource(R.drawable.btn_play);
-        }
+
+    @OnClick(R.id.btnNext)
+    public void onNext() {
+        mPresenter.validateTest();
     }
 
     @OnClick(R.id.btnStartStop)
     void onPlayStop() {
         if (soundPlayer.isNull()) {
-            soundPlayer.playMP3(getActivity(),index);
+            soundPlayer.playMP3(getActivity(), index);
             this.tooglePlaybutton();
+            hideNavigationbuttons();
             return;
         }
         if (soundPlayer.isPlaying()) {
@@ -182,15 +224,36 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
             soundPlayer.stop();
             this.flashNext();
             this.tooglePlaybutton();
+            showNavigationbuttions();
         } else {
             soundPlayer.playMP3(getActivity(), index);
+            hideNavigationbuttons();
             this.tooglePlaybutton();
         }
     }
-    @Override
-    public void onResume() {
-        super.onResume();
+
+    private void showNavigationbuttions() {
+        showBackbutton();
+        showNextbutton();
     }
+
+    private void hideNavigationbuttons() {
+        hideBackbutton();
+        hideNextbutton();
+    }
+
+    @OnClick(R.id.btnBack)
+    void onBack() {
+        this.previousView();
+    }
+
+
+    /**
+     * Factory method
+     *
+     * @param fragmentIndex
+     * @return
+     */
 
     public static SoundTestFragment newInstance(int fragmentIndex) {
         Bundle args = new Bundle();
