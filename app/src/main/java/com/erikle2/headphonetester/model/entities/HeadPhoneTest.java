@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.model;
+package com.erikle2.headphonetester.model.entities;
 
 import com.erikle2.headphonetester.R;
 

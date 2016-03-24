@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.soundtest;
+package com.erikle2.headphonetester.ui.views;
 
 import android.app.Fragment;
 import android.widget.Button;

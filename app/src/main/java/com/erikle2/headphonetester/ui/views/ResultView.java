@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.result;
+package com.erikle2.headphonetester.ui.views;
 
 /**
  * Created by Erik on 24/02/2016.

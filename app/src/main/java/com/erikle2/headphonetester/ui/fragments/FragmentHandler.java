@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.main;
+package com.erikle2.headphonetester.ui.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -7,8 +7,9 @@ import android.widget.Toast;
 
 import com.erikle2.headphonetester.R;
 import com.erikle2.headphonetester.soundtest.ITalkToFragmentControl;
-import com.erikle2.headphonetester.soundtest.SoundTestFragment;
-import com.erikle2.headphonetester.soundtest.SoundfragmentHandler;
+import com.erikle2.headphonetester.ui.fragments.SoundTestFragment;
+import com.erikle2.headphonetester.ui.fragments.SoundfragmentHandler;
+import com.erikle2.headphonetester.ui.activities.MainActivity;
 
 /**
  * Created by Erik on 16/01/2016.

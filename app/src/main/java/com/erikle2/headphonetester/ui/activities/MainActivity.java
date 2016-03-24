@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.main;
+package com.erikle2.headphonetester.ui.activities;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.erikle2.headphonetester.R;
+import com.erikle2.headphonetester.main.FragmentHandler;
+import com.erikle2.headphonetester.main.ITalkToMain;
+import com.erikle2.headphonetester.main.MyAdapter;
 import com.erikle2.headphonetester.model.HeadPhoneTest;
 
 import butterknife.Bind;
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 

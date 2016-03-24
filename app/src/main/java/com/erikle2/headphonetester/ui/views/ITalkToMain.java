@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.main;
+package com.erikle2.headphonetester.ui.views;
 
 import com.erikle2.headphonetester.model.HeadPhoneTest;
 

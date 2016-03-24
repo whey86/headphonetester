@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.result;
+package com.erikle2.headphonetester.ui.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 
 import com.erikle2.headphonetester.R;
 import com.erikle2.headphonetester.main.ITalkToMain;
-import com.erikle2.headphonetester.model.HeadPhoneTest;
+import com.erikle2.headphonetester.result.ResultAdapter;
+import com.erikle2.headphonetester.result.ResultView;
 
 /**
  * Created by Erik on 23/02/2016.
  */
-public class ResultFragment extends Fragment implements ResultView{
+public class ResultFragment extends Fragment implements ResultView {
 
     private RecyclerView mRecyclerview;
     private RecyclerView.Adapter adapter;

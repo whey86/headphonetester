@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.result;
+package com.erikle2.headphonetester.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

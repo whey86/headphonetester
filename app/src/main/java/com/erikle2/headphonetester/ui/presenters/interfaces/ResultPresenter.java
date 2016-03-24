@@ -1,4 +1,4 @@
-package com.erikle2.headphonetester.result;
+package com.erikle2.headphonetester.ui.presenters.interfaces;
 
 import java.util.List;
 
