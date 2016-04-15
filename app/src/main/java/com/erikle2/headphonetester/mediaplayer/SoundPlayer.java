@@ -18,8 +18,8 @@ public class SoundPlayer {
     private MediaPlayer mediaPlayer;
 
     private int [] AUDIOFILES = {   1111,
-                                    R.raw.frequencycheckhigh_44100,
                                     R.raw.frequencychecklow,
+                                    R.raw.frequencycheckhigh_44100,
                                     R.raw.sweep20_20klog_perceptual,
                                     R.raw.dynamiccheck,
                                     R.raw.headphoneshaker,

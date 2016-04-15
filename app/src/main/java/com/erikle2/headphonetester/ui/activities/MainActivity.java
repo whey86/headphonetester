@@ -24,7 +24,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements ITalkToMain {
-
     HeadPhoneTest mTest;
     String TITLES[] = {"Earphonetest", "Compare", "About"};
     int ICONS[] = {android.R.drawable.ic_btn_speak_now, android.R.drawable.ic_dialog_map, android.R.drawable.ic_menu_agenda};
@@ -46,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
     private RecyclerView.Adapter mRecyclerAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
-
     private ActionBarDrawerToggle mDrawerToggle;
 
     private FragmentHandler mFragmentHandler;

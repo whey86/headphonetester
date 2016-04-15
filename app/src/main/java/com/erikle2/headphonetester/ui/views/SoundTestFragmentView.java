@@ -18,6 +18,8 @@ public interface SoundTestFragmentView {
 
     void abortFlash();
 
+    void count(int value);
+
     void nextView();
 
     void previousView();
@@ -31,6 +33,11 @@ public interface SoundTestFragmentView {
 
     void showNextbutton();
     void showBackbutton();
+
+    void hideNavigationbuttons();
+    void showNavigationbuttions();
+
+    void setPlaybackProgress(float f);
 
 
 

@@ -1,1 +1,5 @@
-include ':app'
+include ':app', ':progressdots'
+include ':app', ':library'
+
+project (':progressdots').projectDir = new File('../MyLibrary/progressdots')
+project (':library').projectDir = new File('../android-HoloCircularProgressBar/library')

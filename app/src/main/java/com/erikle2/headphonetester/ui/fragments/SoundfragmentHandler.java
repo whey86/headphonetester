@@ -1,9 +1,10 @@
 package com.erikle2.headphonetester.ui.fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.erikle2.headphonetester.ui.activities.MainActivity;
@@ -19,7 +20,7 @@ public class SoundfragmentHandler implements ITalkToFragmentControl {
 
     private final int FRAGMENT_MAIN = R.id.fragment_container;
 
-    private Activity mActivity;
+    private AppCompatActivity mActivity;
 
     public SoundfragmentHandler(MainActivity activity) {
         this.mActivity = activity;
@@ -33,7 +34,7 @@ public class SoundfragmentHandler implements ITalkToFragmentControl {
      */
     @Override
     public void nextFragment() {
-        FragmentManager fm  = mActivity.getFragmentManager();
+        FragmentManager fm  = mActivity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
         CURRENT_FRAGMENT = CURRENT_FRAGMENT +1;

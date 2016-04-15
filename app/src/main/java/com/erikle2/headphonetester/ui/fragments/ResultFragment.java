@@ -1,5 +1,6 @@
 package com.erikle2.headphonetester.ui.fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.erikle2.headphonetester.R;
+import com.erikle2.headphonetester.ui.adapters.MyDividerRecycler;
 import com.erikle2.headphonetester.ui.views.ITalkToMain;
 import com.erikle2.headphonetester.ui.adapters.ResultAdapter;
 import com.erikle2.headphonetester.ui.views.ResultView;
+
+import org.lucasr.twowayview.TwoWayView;
 
 /**
  * Created by Erik on 23/02/2016.
@@ -40,21 +44,38 @@ public class ResultFragment extends Fragment implements ResultView {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mActivityCallback = (ITalkToMain) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.result_layout,container,false);
         mRecyclerview = (RecyclerView) v.findViewById(R.id.rv_result);
         mRecyclerview.setHasFixedSize(true);
+
         layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerview.setLayoutManager(layoutManager);
         adapter = new ResultAdapter(mActivityCallback.getTest());
+        mRecyclerview.addItemDecoration(new MyDividerRecycler(getActivity()));
+
         mRecyclerview.setAdapter(adapter);
 
 
         return v;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

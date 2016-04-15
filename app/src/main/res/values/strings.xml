@@ -19,14 +19,12 @@
 
     <array name="test_info">
         <item>Follow these simple steps buy listening to different sounds and evaluating them</item>
-        <item>When you press play it will play a sound from a low frequency and go higher. When you
-            hear it press stop. This shows how low frequencies your earphones can play or how low
-            you can hear.
+        <item>The first file tests your headphones\' bass extension. Play back the file until you start hearing the underlying sweeping tone as it rises. The voiceover tells you the frequency you have reached: this number represents the lowest boundary of your headphones or earbuds frequency extension. Good headphones will go as low as 20 Hz, the lowest limit of our hearing.
         </item>
-        <item>Same as previous but on the high end</item>
-        <item>Same as previous but on the high end</item>
-        <item>Same as previous but on the high end</item>
-        <item>Same as previous but on the high end</item>
+        <item>The second file tests your headphones treble extension. To measure your headphones’ highest frequency, play back the second file until you start hearing the underlying (high pitched) sweep tone as it descends. Good headphones will reproduce frequencies up to 20 kHz, the upper limit of human hearing range.</item>
+        <item>Ideally, you want your headphones to reproduce all frequencies consistently between the lower and upper limits, without a dip or peak in a particular frequency range. Absolute flatness is not exactly what you are looking for, though. Your hearing may not be perfect, and if you think about it, the best headphones are those that compensate for your particular hearing curve. It doesnt matter if your headphones are not flat, as long as they sound flat through your ears.</item>
+        <item>Dynamic range represents the ratio between the loudest signal you can hear and the quietest. Dynamic range is not part of any headphone specification, but will help you when benchmarking the isolation offered by your headphone in a noisy environment.</item>
+        <item>Poorly built or extensively worn headphones may start to rattle whenever loud or deep bass content is played. The next file scans bass frequencies and will literally shake your drivers when turning the level up. Adjust the volume in your headphone so that the test is made at a high level: the sweeping tone should remain pure and clear at all frequencies, without any parasitic buzz or rattle appearing in one earpiece or the other.</item>
     </array>
 
     <array name="test_type">

@@ -1,9 +1,9 @@
 package com.erikle2.headphonetester.ui.fragments;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
 
 import com.erikle2.headphonetester.R;
 import com.erikle2.headphonetester.ui.activities.MainActivity;
@@ -37,8 +37,9 @@ public class FragmentHandler {
      *  * @param index
      */
     public void setNaviFragment(int index) {
-        FragmentManager fm = mActivity.getFragmentManager();
+        FragmentManager fm = mActivity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         Toast.makeText(mActivity, "Fragment " + index, Toast.LENGTH_SHORT).show();
 
         //Icon in navigation(recyclerview) was clicked

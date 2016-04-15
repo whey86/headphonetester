@@ -1,11 +1,13 @@
 package com.erikle2.headphonetester.ui.fragments;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.app.Activity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +26,8 @@ import com.erikle2.headphonetester.mediaplayer.SoundPlayer;
 import com.erikle2.headphonetester.ui.presenters.interfaces.SoundTestFragmentPresenter;
 import com.erikle2.headphonetester.ui.views.SoundTestFragmentView;
 import com.erikle2.headphonetester.ui.presenters.impl.SoundTestPresenterImpl;
+import com.erikle2.progressdots.ProgressDotBar;
+import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,18 +38,26 @@ import butterknife.OnClick;
  */
 public class SoundTestFragment extends Fragment implements SoundTestFragmentView {
 
+
     private SoundTestFragmentPresenter mPresenter;
     private ITalkToMain mActivityCallback;
     private String headphoneName;
     private SoundPlayer soundPlayer = SoundPlayer.getInstance();
+    ProgressDotBar mProgressBar;
 
 
     @Bind(R.id.btnBack)
     Button btnPrevious;
     @Bind(R.id.btnNext)
     Button btnNext;
+//    @Bind(R.id.cicletext)
+//    TextView tvCircleText;
+    @Bind(R.id.btnStartStop)
+    Button btnStartAndStop;
 
+//    private HoloCircularProgressBar btnStartAndStop;
     private int index;
+    private int counter = 0;
 
     Animation animationFlash;
 
@@ -54,6 +68,18 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        try {
+            mActivityCallback = (ITalkToMain) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
 
         try {
             mActivityCallback = (ITalkToMain) getActivity();
@@ -80,6 +106,8 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         animationFlash.setInterpolator(new LinearInterpolator()); // do not alter animation rate
         animationFlash.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
         animationFlash.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+
+
     }
 
     @Override
@@ -90,13 +118,15 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         if (index == 0) {
             view = inflater.inflate(R.layout.soundtest_layout_start, container, false);
             Button b = (Button) view.findViewById(R.id.btnStartTest);
+
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     mActivityCallback.startNewTest("Supra headphones");
 
-                    FragmentManager fm = getActivity().getFragmentManager();
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+
                     FragmentTransaction ft = fm.beginTransaction();
 
                     // Check that fragment is not out of bounds
@@ -104,21 +134,30 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
                     ft.addToBackStack(null);
                     ft.setTransition(ft.TRANSIT_FRAGMENT_OPEN);
                     ft.commit();
+
                 }
             });
             //Test started
         } else {
+
             view = inflater.inflate(R.layout.soundtest_layout, container, false);
             ButterKnife.bind(this, view);
             hideNextbutton();
+
+//            btnStartAndStop = (HoloCircularProgressBar) view.findViewById(R.id.btnStartStop);
+//            btnStartAndStop.setProgressColor(getResources().getColor(R.color.colorAccent));
+//            btnStartAndStop.setProgressBackgroundColor(getResources().getColor(R.color.colorPrimaryLighter));
+
         }
 
-
+        mProgressBar = (ProgressDotBar)view.findViewById(R.id.mybar);
+        mProgressBar.setIndex(index);
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTestTitle);
         tvTitle.setText(getActivity().getResources().getStringArray(R.array.test_titles)[index]);
 
         TextView tvText = (TextView) view.findViewById(R.id.tvTestInfo);
         tvText.setText(getActivity().getResources().getStringArray(R.array.test_info)[index]);
+
         return view;
     }
 
@@ -133,7 +172,6 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
 
     @Override
     public void flashNext() {
-        Button btnNext = (Button) getActivity().findViewById(R.id.btnNext);
         btnNext.startAnimation(animationFlash);
     }
 
@@ -143,9 +181,16 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     }
 
     @Override
+    public void count(int value) {
+        btnStartAndStop.setBackgroundResource(R.drawable.circle);
+        btnStartAndStop.setText(value + "");
+    }
+
+    @Override
     public void nextView() {
-        FragmentManager fm = getActivity().getFragmentManager();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        ft.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
 
         // Check that fragment is not out of bounds
         ft.replace(R.id.fragment_container, SoundTestFragment.newInstance(index + 1));
@@ -157,12 +202,11 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
 
     @Override
     public void tooglePlaybutton() {
-        Button btn = (Button) this.getActivity().findViewById(R.id.btnStartStop);
         Resources r = getResources();
-        if (btn.getBackground().getConstantState().equals(r.getDrawable(R.drawable.btn_play).getConstantState())) {
-            btn.setBackgroundResource(R.drawable.btn_stop);
+        if (btnStartAndStop.getBackground().getConstantState().equals(r.getDrawable(R.drawable.btn_play).getConstantState())) {
+            btnStartAndStop.setBackgroundResource(R.drawable.btn_stop);
         } else {
-            btn.setBackgroundResource(R.drawable.btn_play);
+            btnStartAndStop.setBackgroundResource(R.drawable.btn_play);
         }
     }
 
@@ -196,8 +240,14 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
 
     @Override
     public void previousView() {
-        FragmentManager fm = getActivity().getFragmentManager();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         fm.popBackStack();
+    }
+    @Override
+    public void setPlaybackProgress(float f)
+    {
+//        btnStartAndStop.setProgress(f);
+//        btnStartAndStop.invalidate();
     }
 
     /**
@@ -212,32 +262,18 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
 
     @OnClick(R.id.btnStartStop)
     void onPlayStop() {
-        if (soundPlayer.isNull()) {
-            soundPlayer.playMP3(getActivity(), index);
-            this.tooglePlaybutton();
-            hideNavigationbuttons();
-            return;
-        }
-        if (soundPlayer.isPlaying()) {
-            Toast.makeText(getActivity(), "Duration : " + soundPlayer.getMediaPlayer().getCurrentPosition(), Toast.LENGTH_LONG).show();
-            mPresenter.setValue(soundPlayer.getMediaPlayer().getCurrentPosition());
-            soundPlayer.stop();
-            this.flashNext();
-            this.tooglePlaybutton();
-            showNavigationbuttions();
-        } else {
-            soundPlayer.playMP3(getActivity(), index);
-            hideNavigationbuttons();
-            this.tooglePlaybutton();
-        }
+        mPresenter.playOrPauseAudio();
     }
-
-    private void showNavigationbuttions() {
+    @Override
+    public void showNavigationbuttions() {
         showBackbutton();
         showNextbutton();
     }
 
-    private void hideNavigationbuttons() {
+
+
+    @Override
+    public void hideNavigationbuttons() {
         hideBackbutton();
         hideNextbutton();
     }
