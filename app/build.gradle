@@ -24,15 +24,25 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+
+    compile 'com.android.support:cardview-v7:23.0.0'
     compile 'com.android.support:recyclerview-v7:23.1.1'
 
-    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'de.hdodenhof:circleimageview:1.2.1'
 
-
+    //My Libraries & downloaded
     compile project (":progressdots")
     compile project (":library")
+    //RXJAVA
+    compile 'io.reactivex:rxjava:1.1.+'
+    compile 'io.reactivex:rxjava-async-util:0.21.0'
 
-    compile 'org.lucasr.twowayview:twowayview:0.1.4'
+    compile 'io.reactivex:rxandroid:1.1.+'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
+    compile 'com.trello:rxlifecycle:0.4.0'
+    compile 'com.trello:rxlifecycle-components:0.4.0'
+
+    //Helplibraries
+    compile 'com.jakewharton:butterknife:7.0.1'
 
 }

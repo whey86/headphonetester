@@ -38,6 +38,7 @@
         android:padding="20dp"
         android:gravity="center"
         android:id="@+id/tvTestTitle"
+        android:textColor="@color/primaryText"
         android:layout_gravity="center_horizontal|top" />
     <TextView
         android:layout_below="@+id/tvTestTitle"
@@ -48,6 +49,7 @@
         android:gravity="center"
         android:id="@+id/tvTestInfo"
         android:shadowColor="@color/colorPrimaryDark"
+        android:textColor="@color/primaryText"
         android:layout_gravity="center_horizontal|top" />
     <TextView
         android:layout_below="@+id/tvTestInfo"
@@ -58,6 +60,7 @@
         android:gravity="center"
         android:id="@+id/tvTestresult"
         android:shadowColor="@color/colorPrimaryDark"
+        android:textColor="@color/primaryText"
         android:layout_gravity="center_horizontal|top" />
 
         <LinearLayout

@@ -39,27 +39,28 @@ public class MyDividerRecycler extends  RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        outRect.left = 20;
-        outRect.right = 20;
-        outRect.bottom = 20;
+        outRect.top = 10;
+        outRect.left = 40;
+        outRect.right = 40;
+        outRect.bottom = 40;
     }
-
-    @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        int left = parent.getPaddingLeft();
-        int right = parent.getWidth() - parent.getPaddingRight();
-
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount-1; i++) {
-            View child = parent.getChildAt(i);
-
-            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-
-            int top = child.getBottom() + params.bottomMargin;
-            int bottom = top + mDivider.getIntrinsicHeight();
-
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
-        }
-    }
+//
+//    @Override
+//    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+//        int left = parent.getPaddingLeft();
+//        int right = parent.getWidth() - parent.getPaddingRight();
+//
+//        int childCount = parent.getChildCount();
+//        for (int i = 0; i < childCount-1; i++) {
+//            View child = parent.getChildAt(i);
+//
+//            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+//
+//            int top = child.getBottom() + params.bottomMargin;
+//            int bottom = top + mDivider.getIntrinsicHeight();
+//
+//            mDivider.setBounds(left, top, right, bottom);
+//            mDivider.draw(c);
+//        }
+//    }
 }

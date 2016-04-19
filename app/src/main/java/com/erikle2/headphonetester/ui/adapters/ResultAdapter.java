@@ -1,5 +1,6 @@
 package com.erikle2.headphonetester.ui.adapters;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,10 +33,12 @@ public class ResultAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
+        CardView v = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.result_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
+        v.setContentPadding(20,15,20,15);
         ViewHolder vh = new ViewHolder(v);
+
         return vh;
     }
 

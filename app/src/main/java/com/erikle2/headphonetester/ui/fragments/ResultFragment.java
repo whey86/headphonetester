@@ -3,12 +3,14 @@ package com.erikle2.headphonetester.ui.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.erikle2.headphonetester.R;
 import com.erikle2.headphonetester.ui.adapters.MyDividerRecycler;
@@ -16,7 +18,6 @@ import com.erikle2.headphonetester.ui.views.ITalkToMain;
 import com.erikle2.headphonetester.ui.adapters.ResultAdapter;
 import com.erikle2.headphonetester.ui.views.ResultView;
 
-import org.lucasr.twowayview.TwoWayView;
 
 /**
  * Created by Erik on 23/02/2016.
@@ -65,6 +66,9 @@ public class ResultFragment extends Fragment implements ResultView {
         mRecyclerview.setLayoutManager(layoutManager);
         adapter = new ResultAdapter(mActivityCallback.getTest());
         mRecyclerview.addItemDecoration(new MyDividerRecycler(getActivity()));
+
+        TextView device = (TextView) v.findViewById(R.id.tvDeviceName);
+        device.setText(Build.MODEL);
 
         mRecyclerview.setAdapter(adapter);
 

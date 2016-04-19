@@ -1,5 +1,6 @@
 package com.erikle2.headphonetester.ui.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,8 +21,12 @@ import com.erikle2.headphonetester.ui.views.ITalkToMain;
 import com.erikle2.headphonetester.ui.adapters.MyAdapter;
 import com.erikle2.headphonetester.model.entities.HeadPhoneTest;
 
+import rx.Observable;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements ITalkToMain {
     HeadPhoneTest mTest;
@@ -118,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
         mDrawerToggle.syncState();
 
 
+
+
     }
 
     @Override
@@ -148,12 +155,14 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
     }
 
     @Override
-    public HeadPhoneTest startNewTest(String name) {
-        return mTest = new HeadPhoneTest(name, getResources().getStringArray(R.array.test_titles));
+    public HeadPhoneTest startNewTest() {
+        return mTest = new HeadPhoneTest(getModel(), getResources().getStringArray(R.array.test_titles));
     }
 
     @Override
     public HeadPhoneTest getTest() {
         return mTest;
     }
+
+    private String  getModel (){return android.os.Build.MODEL;}
 }

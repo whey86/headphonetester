@@ -123,7 +123,7 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
                 @Override
                 public void onClick(View v) {
 
-                    mActivityCallback.startNewTest("Supra headphones");
+                    mActivityCallback.startNewTest();
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
 
