@@ -20,6 +20,7 @@ import com.erikle2.headphonetester.ui.fragments.FragmentHandler;
 import com.erikle2.headphonetester.ui.views.ITalkToMain;
 import com.erikle2.headphonetester.ui.adapters.MyAdapter;
 import com.erikle2.headphonetester.model.entities.HeadPhoneTest;
+import com.firebase.client.Firebase;
 
 import rx.Observable;
 import butterknife.Bind;
@@ -54,10 +55,14 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
     private FragmentHandler mFragmentHandler;
 
+    Firebase mFirebaseRef = new Firebase("https://scorching-torch-5702.firebaseio.com/");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);

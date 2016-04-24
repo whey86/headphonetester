@@ -64,7 +64,8 @@ public class FragmentHandler {
     private Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return SoundTestFragment.newInstance(0);
+                return  ChooseHeadphonesFragment.newInstance();
+//                return SoundTestFragment.newInstance(0);
         }
         return null;
     }
