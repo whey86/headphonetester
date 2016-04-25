@@ -59,6 +59,8 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     private int index;
     private int counter = 0;
 
+    private String myHeadphones;
+
     Animation animationFlash;
 
     /**
@@ -107,6 +109,8 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
         animationFlash.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
         animationFlash.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
 
+        Bundle b = getArguments();
+        myHeadphones = (String) b.get("headphones");
 
     }
 
@@ -122,13 +126,9 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    mActivityCallback.startNewTest();
-
+                    mActivityCallback.startNewTest(myHeadphones);
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-
                     FragmentTransaction ft = fm.beginTransaction();
-
                     // Check that fragment is not out of bounds
                     ft.replace(R.id.fragment_container, SoundTestFragment.newInstance(index + 1));
                     ft.addToBackStack(null);

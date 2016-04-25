@@ -55,7 +55,7 @@ public class SoundTestPresenterImpl implements SoundTestFragmentPresenter {
     @Override
     public void validateTest() {
         // Testfragement done and not last testfragment
-        if (activityCallback.getTest().hasValue(index) && index < MAX) {
+        if (activityCallback.getTest().hasValue(index) && index < MAX ) {
             view.nextView();
 
         } else if (TEST_TYPE == 2 && index < MAX) {

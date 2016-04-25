@@ -22,6 +22,9 @@ import com.erikle2.headphonetester.ui.adapters.MyAdapter;
 import com.erikle2.headphonetester.model.entities.HeadPhoneTest;
 import com.firebase.client.Firebase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import rx.Observable;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -55,14 +58,14 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
 
     private FragmentHandler mFragmentHandler;
 
-    Firebase mFirebaseRef = new Firebase("https://scorching-torch-5702.firebaseio.com/");
+    Firebase mFirebaseRef = new Firebase("https://headphonetester.firebaseio.com/devices");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
+
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
@@ -160,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements ITalkToMain {
     }
 
     @Override
-    public HeadPhoneTest startNewTest() {
-        return mTest = new HeadPhoneTest(getModel(), getResources().getStringArray(R.array.test_titles));
+    public HeadPhoneTest startNewTest(String headphones) {
+        return mTest = new HeadPhoneTest(getModel(),headphones, getResources().getStringArray(R.array.test_titles));
     }
 
     @Override

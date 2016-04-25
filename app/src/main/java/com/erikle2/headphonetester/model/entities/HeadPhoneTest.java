@@ -1,6 +1,5 @@
 package com.erikle2.headphonetester.model.entities;
 
-import com.erikle2.headphonetester.R;
 
 /**
  * Created by Erik on 12/02/2016.
@@ -10,7 +9,9 @@ public class HeadPhoneTest {
      * Required
      * Name of headphones being tested
      */
-    protected String headphonesName;
+     String myHeadphones;
+
+     String device;
     /**
      * Name of test
      */
@@ -18,19 +19,22 @@ public class HeadPhoneTest {
     /**
      * Number of tests
      */
-    protected int SIZE = 6;
+    private int SIZE = 6;
     /**
      * Array storing testresult
      */
     private int [] result = new int[SIZE];
 
+    private int score;
+
     /**
      * Constructor
-     * @param name
+     * @param device
      */
-    public HeadPhoneTest(String name, String [] testnames){
+    public HeadPhoneTest(String device,String headphones, String [] testnames){
 
-        headphonesName = name;
+        this.myHeadphones = headphones;
+        this.device = device;
         this.testname = testnames;
     }
 
@@ -57,4 +61,12 @@ public class HeadPhoneTest {
     }
 
     public String [] getName(){ return testname;}
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

@@ -5,4 +5,5 @@ package com.erikle2.headphonetester.ui.views;
  */
 public interface ResultView {
     void close();
+    void setResult(int score);
 }

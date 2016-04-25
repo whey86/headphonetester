@@ -13,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.erikle2.headphonetester.R;
+import com.erikle2.headphonetester.network.DatabaseConnection;
 import com.erikle2.headphonetester.ui.adapters.MyDividerRecycler;
+import com.erikle2.headphonetester.ui.presenters.impl.ResultPresenterImpl;
+import com.erikle2.headphonetester.ui.presenters.interfaces.ResultPresenter;
 import com.erikle2.headphonetester.ui.views.ITalkToMain;
 import com.erikle2.headphonetester.ui.adapters.ResultAdapter;
 import com.erikle2.headphonetester.ui.views.ResultView;
@@ -28,7 +31,9 @@ public class ResultFragment extends Fragment implements ResultView {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ITalkToMain mActivityCallback;
+    private ResultPresenter mPresenter;
 
+    private TextView textViewScore;
     /**
      *
      *          LIFECYCLE METHODS
@@ -61,7 +66,6 @@ public class ResultFragment extends Fragment implements ResultView {
         View v = inflater.inflate(R.layout.result_layout,container,false);
         mRecyclerview = (RecyclerView) v.findViewById(R.id.rv_result);
         mRecyclerview.setHasFixedSize(true);
-
         layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerview.setLayoutManager(layoutManager);
         adapter = new ResultAdapter(mActivityCallback.getTest());
@@ -70,9 +74,8 @@ public class ResultFragment extends Fragment implements ResultView {
         TextView device = (TextView) v.findViewById(R.id.tvDeviceName);
         device.setText(Build.MODEL);
 
+        textViewScore = (TextView) v.findViewById(R.id.tvScore);
         mRecyclerview.setAdapter(adapter);
-
-
         return v;
     }
 
@@ -80,10 +83,19 @@ public class ResultFragment extends Fragment implements ResultView {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPresenter = new ResultPresenterImpl(mActivityCallback.getTest(), this);
+
+        //Save test to firebase
+        mPresenter.saveTest();
 
     }
 
@@ -95,6 +107,11 @@ public class ResultFragment extends Fragment implements ResultView {
     @Override
     public void close() {
         //TODO return to main screen
+    }
+
+    @Override
+    public void setResult(int score) {
+        textViewScore.setText("Total score: " + score );
     }
 
     /**

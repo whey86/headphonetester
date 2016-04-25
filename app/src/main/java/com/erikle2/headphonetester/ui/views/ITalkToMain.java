@@ -7,6 +7,6 @@ import com.erikle2.headphonetester.model.entities.HeadPhoneTest;
  */
 public interface ITalkToMain {
     void onNavigationSelected(int position);
-    HeadPhoneTest startNewTest();
+    HeadPhoneTest startNewTest(String headphones);
     HeadPhoneTest getTest();
 }
