@@ -13,8 +13,8 @@ public class ResultAnalyzes {
     public static int getScore(int testIndex, int value){
 
         switch (testIndex){
-            case 1: lowestFrequency(value);
-            case 2: highestFrequency(value);
+            case 1: return lowestFrequency(value);
+            case 2: return highestFrequency(value);
         }
 
         return 0;
@@ -33,7 +33,7 @@ public class ResultAnalyzes {
     }
     private static int highestFrequency(int value) {
 
-        if(value >= 200000){
+        if(value >= 20000){
             return SCORE_HIGH;
         }else if(value > 18000){
             return  SCORE_PASSABLE;

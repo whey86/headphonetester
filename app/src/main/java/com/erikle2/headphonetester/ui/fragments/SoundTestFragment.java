@@ -41,8 +41,6 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
 
     private SoundTestFragmentPresenter mPresenter;
     private ITalkToMain mActivityCallback;
-    private String headphoneName;
-    private SoundPlayer soundPlayer = SoundPlayer.getInstance();
     ProgressDotBar mProgressBar;
 
 
@@ -50,14 +48,11 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     Button btnPrevious;
     @Bind(R.id.btnNext)
     Button btnNext;
-//    @Bind(R.id.cicletext)
-//    TextView tvCircleText;
     @Bind(R.id.btnStartStop)
     Button btnStartAndStop;
 
 //    private HoloCircularProgressBar btnStartAndStop;
     private int index;
-    private int counter = 0;
 
     private String myHeadphones;
 
@@ -118,7 +113,7 @@ public class SoundTestFragment extends Fragment implements SoundTestFragmentView
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view;
-        // Determing to show intro or test
+        // If infofragment (Before test)
         if (index == 0) {
             view = inflater.inflate(R.layout.soundtest_layout_start, container, false);
             Button b = (Button) view.findViewById(R.id.btnStartTest);
